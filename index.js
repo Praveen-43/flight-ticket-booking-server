@@ -5,10 +5,9 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
 const authRoute = require("./routes/auth");
-const dateRoute = require('./routes/dateChecker')
-const ticketRoute = require('./routes/ticket-booking')
-
-
+const dateRoute = require("./routes/dateChecker");
+const ticketRoute = require("./routes/ticket-booking");
+const mailRoute = require("./routes/mail");
 
 mongoose
   .connect(process.env.MONGO_URL)
@@ -34,5 +33,4 @@ app.listen(process.env.PORT || 3001, () => {
 app.use("/api/auth", authRoute);
 app.use("/api/date", dateRoute);
 app.use("/api/ticket", ticketRoute);
-
-
+app.use("/api/mail", mailRoute);

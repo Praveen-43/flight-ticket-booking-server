@@ -6,25 +6,27 @@ router.post("/message", async (request, response) => {
     var transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "vijaybsbs@gmail.com",
+        user: "testnodemail04@gmail.com",
         pass: process.env.pass,
       },
     });
 
     var mailOptions = {
-      from: "vijaybsbs@gmail.com",
-      to: "vijay@vktfabs.com,vijaybsbs@gmail.com",
-      subject: request.body.subject,
-      text: `Customer Details`,
-      html: `<div><h3>Customer</h3>
-      <h1>Name</h1> : <p>${request.body.name}</p>
-      <h1>Company Name</h1> : <p>${request.body.companyName}</p>
-      <h1>position</h1> : <p>${request.body.position}</p>
-      <h1>Email ID</h1> : <p>${request.body.mailid}</p>
-      <h1>Contact No</h1> : <p>${request.body.contactNo}</p>
-      <h1>Address</h1> : <p>${request.body.address}</p>
-      <h1>Enquiry</h1> : <p>${request.body.message}</p>
-      </div>`,
+      from: "testnodemail04@gmail.com",
+      to: request.body.mailid,
+      subject: "Flight Ticket",
+      text: "Flight Ticket",
+      html: `  <div className="card mt-3">
+      <h5 className="card-header  ">
+        Ticket on ${request.body.airline}
+      </h5>
+      <div className="card-body">
+        <h5 className="card-title">From ${request.body.from} to ${request.body.to}</h5>
+        <h5>Date:${request.body.date} </h5>
+       
+        <h5>Total Ticket Price : ${request.body.price}</h5>
+      </div>
+    </div>`,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
