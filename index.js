@@ -6,6 +6,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 const authRoute = require("./routes/auth");
 const dateRoute = require('./routes/dateChecker')
+const ticketRoute = require('./routes/ticket-booking')
+
 
 
 mongoose
@@ -31,5 +33,6 @@ app.listen(process.env.PORT || 3001, () => {
 
 app.use("/api/auth", authRoute);
 app.use("/api/date", dateRoute);
+app.use("/api/ticket", ticketRoute);
 
 

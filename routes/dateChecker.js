@@ -1,3 +1,5 @@
+const { verifyToken } = require("./verifytoken");
+
 const router = require("express").Router();
 
 function monthDiff(d1, d2) {
@@ -10,7 +12,7 @@ function monthDiff(d1, d2) {
   return Math.abs(Math.round(diff));
 }
 
-router.post("/dashboard", async (request, response) => {
+router.post("/dashboard",verifyToken, async (request, response) => {
   try {
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, "0");
@@ -25,13 +27,13 @@ router.post("/dashboard", async (request, response) => {
     if (!(resDate < today)) {
       if (diff >= 6) {
         offer = 50;
-      } else if (diff < 5) {
+      } else if (diff == 5) {
         offer = 40;
-      } else if (diff < 4) {
+      } else if (diff == 4) {
         offer = 30;
-      } else if (diff < 3) {
+      } else if (diff == 3) {
         offer = 20;
-      } else if (diff < 2) {
+      } else if (diff == 2) {
         offer = 10;
       } else {
         offer = 0;
